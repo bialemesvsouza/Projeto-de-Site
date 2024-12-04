@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Athenas.edu - Curso de Confeitaria</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <h1>Athenas.edu</h1>
+    </header>
+    <main>
+        <section id="course-cover">
+            <img src="imagensCozinha/variedade-de-doces-em-um-fundo-branco-varios-doces-biscoitos-chocolate-marshmallows-vista-superior_79830-2743.avif" alt="Capa do Curso de Confeitaria">
+        </section>
+        <section id="course-header">
+            <p>Aprenda as melhores técnicas de confeitaria com nossos especialistas.</p>
+        </section>
+        <section id="course-description">
+            <h3>Descrição do Curso</h3>
+            <p>Este curso de confeitaria irá te ensinar desde as técnicas básicas até as mais avançadas para criar sobremesas incríveis.</p>
+        </section>
+        <section id="course-content">
+            <h3>Conteúdo do Curso</h3>
+            <ul>
+                <li>Aula 1: Introdução à Confeitaria</li>
+                <li>Aula 2: Preparação de Massas</li>
+                <li>Aula 3: Técnicas de Cobertura</li>
+                <li>Aula 4: Decoração de Bolos</li>
+                <li>Aula 5: Receitas Avançadas</li>
+            </ul>
+        </section>
+        <section id="course-reviews">
+            <h3>Avaliações</h3>
+            <div class="review">
+                <p><strong>João:</strong> Excelente curso, muito didático e prático!</p>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="review">
+                <p><strong>Maria:</strong> Aprendi muito, recomendo a todos!</p>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+            <form id="review-form">
+                <label for="rating">Sua Avaliação:</label>
+                <div id="rating" class="stars">
+                    <span>⭐</span>
+                    <span>⭐</span>
+                    <span>⭐</span>
+                    <span>⭐</span>
+                    <span>⭐</span>
+                </div>
+                <label for="comment">Seu Comentário:</label>
+                <textarea id="comment" name="comment" rows="4" required></textarea>
+                <button type="submit">Enviar Avaliação</button>
+            </form>
+        </section>
+        <section id="course-forum">
+            <h3>Fórum de Perguntas</h3>
+            <div id="forum-questions">
+                <div class="question">
+                    <p><strong>Pedro:</strong> Qual a melhor técnica para fazer glacê?</p>
+                </div>
+                <div class="question">
+                    <p><strong>Ana:</strong> Como evitar que o bolo murche?</p>
+                </div>
+            </div>
+            <form id="forum-form">
+                <label for="question">Faça sua pergunta:</label>
+                <textarea id="question" name="question" rows="4" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+        <button id="start-course">Iniciar Curso</button>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const forumForm = document.getElementById('forum-form');
+            const forumQuestions = document.getElementById('forum-questions');
+            const reviewForm = document.getElementById('review-form');
+            const ratingStars = document.querySelectorAll('#rating span');
+
+            forumQuestions.addEventListener('click', (event) => {
+        if (event.target.classList.contains('edit-btn')) {
+            // Lógica para editar o comentário
+            const questionDiv = event.target.parentElement;
+            const questionTextP = questionDiv.querySelector('p');
+            const questionText = questionTextP.textContent.replace('Usuário: ', '');
+            document.getElementById('question').value = questionText;
+            questionDiv.remove();
+        } else if (event.target.classList.contains('remove-btn')) {
+            // Lógica para remover o comentário
+            event.target.parentElement.remove();
+        }
+    });
+
+    document.querySelector('#course-reviews').addEventListener('click', (event) => {
+        if (event.target.classList.contains('remove-rating-btn')) {
+            // Lógica para remover a avaliação
+            event.target.parentElement.remove();
+        }
+    });
+
+
+            forumForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const questionText = document.getElementById('question').value;
+                if (questionText.trim() !== '') {
+                    const newQuestion = document.createElement('div');
+                    newQuestion.classList.add('question');
+                    newQuestion.innerHTML = `<p><strong>Usuário:</strong> ${questionText}</p> <button class="edit-btn" id="botaocomentario">Editar</button>
+            <button class="remove-btn" id="botaocomentario">Remover</button>`;
+                    forumQuestions.appendChild(newQuestion);
+                    forumForm.reset();
+                }
+            });
+
+            reviewForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const commentText = document.getElementById('comment').value;
+                const selectedRating = document.querySelector('#rating .selected');
+                if (commentText.trim() !== '' && selectedRating) {
+                    const newReview = document.createElement('div');
+                    newReview.classList.add('review');
+                    const stars = selectedRating.dataset.value;
+                    newReview.innerHTML = `<p><strong>Usuário:</strong> ${commentText}</p><div class="stars">${'⭐'.repeat(stars)}</div> <button class="remove-rating-btn" id="botaocomentario">Remover Avaliação</button>`;
+                    document.querySelector('#course-reviews').insertBefore(newReview, reviewForm);
+                    reviewForm.reset();
+                    ratingStars.forEach(star => star.classList.remove('selected'));
+                }
+            });
+
+            ratingStars.forEach((star, index) => {
+                star.dataset.value = index + 1;
+                star.addEventListener('click', () => {
+                    ratingStars.forEach(s => s.classList.remove('selected'));
+                    star.classList.add('selected');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

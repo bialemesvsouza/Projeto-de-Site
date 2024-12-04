@@ -1,0 +1,131 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 500px;
+    background-color: #34495e;
+}
+
+#right{
+    display: flex;
+    gap: 10px;
+}
+
+#SelectCategorias{
+    border: none;
+    border-radius: 5px;
+    background-color: #34495e;
+    color: #ecf0f1 ;
+    font-size: 20px;
+}
+
+input{
+    width: 250px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+}
+
+img{
+    width: 250px;
+    height: 150px;
+}
+
+#Imagens{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#titulos{
+    margin-left: 100px;
+    margin-top: 50px;
+    color: #2980b9;
+    
+}
+
+#maioral{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    align-self: flex-end;
+    padding: 10px 20px;
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1f6391;
+}
+#itens{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+}
+
+#vaiporra{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#botoes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 150px;
+    margin-top: 5px;
+}
+
+#Curso{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 155px;
+    font-family:Verdana;
+}
+
+#CursoPrograma{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 179px;
+    font-family:Verdana;
+}
+
+#CursoCostura{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 189px;
+    font-family:Verdana;
+}
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #34495e;
+    flex-direction: column;
+    color: #ecf0f1 ;
+    margin-top: 50px;
+}
+
+
